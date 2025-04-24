@@ -276,6 +276,7 @@ if st.button("🔍 Fetch & Predict"):
         # Model path logic
         sector_key = industry.lower()
         model_paths = {
+            "CatBoost": f"models/catboost_model_{sector_key}.pkl"
             "XGBoost": f"models/xgboost_model_{sector_key}.pkl",
             "LightGBM": f"models/lightgbm_model_{sector_key}.pkl",
         }
