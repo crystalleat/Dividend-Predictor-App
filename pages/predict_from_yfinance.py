@@ -209,7 +209,13 @@ st.title("📈 Predict Dividend Change using yFinance Data")
 
 ticker_input = st.text_input("Enter a Ticker Symbol (e.g., AAPL, MSFT, GE):", value="AAPL")
 industry = st.selectbox("Select Industry", ["Consumer", "Financials", "Energy", "Other"])
-model_option = st.selectbox("Choose a Model:", ["CatBoost","XGBoost", "LightGBM"])
+model_option = st.selectbox("Choose a Model:", ["CatBoost", "XGBoost", "LightGBM"])
+
+def safe_get(df, key):
+    try:
+        return df.loc[key].iloc[0] if key in df.index else 0
+    except Exception:
+        return 0
 
 def safe_div(a, b):
     try:
@@ -217,14 +223,11 @@ def safe_div(a, b):
     except:
         return 0
 
-def safe_get(df, key):
-    return df.get(key, 0) or 0
-
 if st.button("🔍 Fetch & Predict"):
     try:
         stock = yf.Ticker(ticker_input)
 
-        # Retrieve quarterly statements (new syntax)
+        # Use latest yfinance format
         income_raw = stock.get_income_stmt(freq="quarterly")
         balance_raw = stock.get_balance_sheet(freq="quarterly")
         cashflow_raw = stock.get_cash_flow(freq="quarterly")
@@ -237,33 +240,29 @@ if st.button("🔍 Fetch & Predict"):
             st.error("❌ One or more financial statements are unavailable. Try a different ticker.")
             st.stop()
 
-        # Use most recent column
-        income_stmt = income_raw.iloc[:, 0]
-        balance_sheet = balance_raw.iloc[:, 0]
-        cashflow_stmt = cashflow_raw.iloc[:, 0]
-
-        short_debt = safe_get(balance_sheet, "Short Long Term Debt")
-        long_debt = safe_get(balance_sheet, "Long Term Debt")
+        # Compute total debt
+        short_debt = safe_get(balance_raw, "Short Long Term Debt")
+        long_debt = safe_get(balance_raw, "Long Term Debt")
         total_debt = short_debt + long_debt
 
         # Compute ratios
         ratios = {
-            'dpr': safe_div(safe_get(cashflow_stmt, "Cash Dividends Paid"), safe_get(income_stmt, "Net Income")),
-            'roe': safe_div(safe_get(income_stmt, "Net Income"), safe_get(balance_sheet, "Stockholders Equity")),
-            'roa': safe_div(safe_get(income_stmt, "Net Income"), safe_get(balance_sheet, "Total Assets")),
-            'GProf': safe_div(safe_get(income_stmt, "Gross Profit"), safe_get(income_stmt, "Total Revenue")),
-            'npm': safe_div(safe_get(income_stmt, "Net Income"), safe_get(income_stmt, "Total Revenue")),
-            'fcf_ocf': safe_div(safe_get(cashflow_stmt, "Free Cash Flow"), safe_get(cashflow_stmt, "Operating Cash Flow")),
-            'cash_debt': safe_div(safe_get(balance_sheet, "Cash And Cash Equivalents"), total_debt),
-            'cash_lt': safe_div(safe_get(balance_sheet, "Cash And Cash Equivalents"), long_debt),
-            'ocf_lct': safe_div(safe_get(cashflow_stmt, "Operating Cash Flow"), total_debt),
-            'totdebt_invcap': safe_div(total_debt, safe_get(balance_sheet, "Invested Capital")),
-            'de_ratio': safe_div(total_debt, safe_get(balance_sheet, "Stockholders Equity")),
-            'debt_ebitda': safe_div(total_debt, safe_get(income_stmt, "EBITDA")),
-            'intcov_ratio': safe_div(safe_get(income_stmt, "EBIT"), safe_get(income_stmt, "Interest Expense")),
-            'curr_ratio': safe_div(safe_get(balance_sheet, "Current Assets"), safe_get(balance_sheet, "Current Liabilities")),
-            'cash_ratio': safe_div(safe_get(balance_sheet, "Cash And Cash Equivalents"), safe_get(balance_sheet, "Current Liabilities")),
-            'quick_ratio': safe_div(safe_get(balance_sheet, "Current Assets") - safe_get(balance_sheet, "Inventory"), safe_get(balance_sheet, "Current Liabilities")),
+            'dpr': safe_div(safe_get(cashflow_raw, "Cash Dividends Paid"), safe_get(income_raw, "Net Income")),
+            'roe': safe_div(safe_get(income_raw, "Net Income"), safe_get(balance_raw, "Stockholders Equity")),
+            'roa': safe_div(safe_get(income_raw, "Net Income"), safe_get(balance_raw, "Total Assets")),
+            'GProf': safe_div(safe_get(income_raw, "Gross Profit"), safe_get(income_raw, "Total Revenue")),
+            'npm': safe_div(safe_get(income_raw, "Net Income"), safe_get(income_raw, "Total Revenue")),
+            'fcf_ocf': safe_div(safe_get(cashflow_raw, "Free Cash Flow"), safe_get(cashflow_raw, "Operating Cash Flow")),
+            'cash_debt': safe_div(safe_get(balance_raw, "Cash And Cash Equivalents"), total_debt),
+            'cash_lt': safe_div(safe_get(balance_raw, "Cash And Cash Equivalents"), long_debt),
+            'ocf_lct': safe_div(safe_get(cashflow_raw, "Operating Cash Flow"), total_debt),
+            'totdebt_invcap': safe_div(total_debt, safe_get(balance_raw, "Invested Capital")),
+            'de_ratio': safe_div(total_debt, safe_get(balance_raw, "Stockholders Equity")),
+            'debt_ebitda': safe_div(total_debt, safe_get(income_raw, "EBITDA")),
+            'intcov_ratio': safe_div(safe_get(income_raw, "EBIT"), safe_get(income_raw, "Interest Expense")),
+            'curr_ratio': safe_div(safe_get(balance_raw, "Current Assets"), safe_get(balance_raw, "Current Liabilities")),
+            'cash_ratio': safe_div(safe_get(balance_raw, "Cash And Cash Equivalents"), safe_get(balance_raw, "Current Liabilities")),
+            'quick_ratio': safe_div(safe_get(balance_raw, "Current Assets") - safe_get(balance_raw, "Inventory"), safe_get(balance_raw, "Current Liabilities")),
         }
 
         input_df = pd.DataFrame([ratios])
@@ -298,3 +297,4 @@ if st.button("🔍 Fetch & Predict"):
 
     except Exception as e:
         st.error(f"❌ Error during prediction: {e}")
+
