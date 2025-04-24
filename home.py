@@ -1,29 +1,30 @@
-# File: app.py
+# File: home.py
 import streamlit as st
 
-# Set app config
-st.set_page_config(page_title="Dividend Change Prediction App", layout="wide")
+st.set_page_config(
+    page_title="Dividend Change Predictor",
+    page_icon="📈",
+    layout="wide"
+)
 
-# Define all pages
-App_page_0 = st.Page("pages/about.py", title="ℹ️ Overview")
-App_page_1 = st.Page("pages/code.py", title="🌲 Codes for each Model")
-App_page_2 = st.Page("pages/predict_from_yfinance.py", title="🧮 Predict from yFinance")
-App_page_3 = st.Page("pages/main.py", title="🏠 Training Dataset", default=True)
-App_page_4 = st.Page("pages/about_ratios.py", title="📘 Ratios we used")
-App_page_5 = st.Page("pages/gpt_analysis.py", title="🤖 GPT Analysis")  # ✅ Added!
+st.title("📊 Welcome to the Dividend Change Predictor App")
 
-# Sidebar Navigation Groups
-pg = st.navigation({
-    "Start Here": [App_page_0],
-    "Model Dashboards": [App_page_1, App_page_2],
-    "Interpretation": [App_page_5],  # ✅ GPT explanation
-    "More Info": [App_page_3, App_page_4],
-})
+st.markdown("""
+This app helps predict whether a company's dividend will:
 
+- 📈 Increase  
+- ➖ Stay the same  
+- 📉 Decrease  
 
-st.sidebar.markdown("""
-### Project Navigation
-Use the sidebar to switch between models and view reports, confusion matrices, and export options.
+It uses financial ratios from **yFinance** and industry-specific machine learning models.
+
+---
+
+### 🔍 Explore via the sidebar:
+- 🧮 Make a prediction using real-time stock data
+- 🤖 View GPT-style natural language analysis
+- 📘 Learn the formulas and logic used
+- 🔢 See how the models were trained
+
+Built with ❤️ using Streamlit, Scikit-learn, LightGBM, and XGBoost.
 """)
-
-pg.run()
