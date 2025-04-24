@@ -201,6 +201,7 @@ import streamlit as st
 import yfinance as yf
 import pandas as pd
 import pickle
+from catboost import CatBoostClassifier
 from xgboost import XGBClassifier
 from lightgbm import LGBMClassifier
 
