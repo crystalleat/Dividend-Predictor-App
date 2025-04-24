@@ -177,7 +177,7 @@ if st.button("🔍 Fetch & Predict"):
             model = pickle.load(f)
 
         y_pred = model.predict(input_df)
-        label_map = {-1: "📉 Decrease", 0: "➖ No Change", 1: "📈 Increase"}
+        label_map = {0: "📉 Decrease", 1: "➖ No Change", 2: "📈 Increase"}
         pred = int(y_pred.flatten()[0]) if hasattr(y_pred, 'flatten') else int(y_pred[0])
         st.success(f"📊 Predicted Dividend Change: **{label_map[pred]}**")
         st.session_state.prediction_label = label_map[pred]
