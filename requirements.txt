@@ -1,5 +1,4 @@
 # Core ML frameworks
-catboost==1.2.2
 xgboost==2.0.3
 lightgbm==4.1.0
 scikit-learn==1.4.1.post1
