@@ -230,62 +230,63 @@ Explore the training code, rationale, and performance of each model (CatBoost, X
 """)
 
 # Define tabs
-catboost_tab, xgboost_tab, lightgbm_tab, model_choosing_Tab = st.tabs(["🐱 CatBoost", "🌲 XGBoost", "💡 LightGBM Ensemble", "Model Choice Rationale and Summary"])
+# catboost_tab, 
+xgboost_tab, lightgbm_tab, model_choosing_Tab = st.tabs(["🌲 XGBoost", "💡 LightGBM Ensemble", "Model Choice Rationale and Summary"])
 
 # --- CatBoost Tab ---
-with catboost_tab:
-    st.subheader("🐱 CatBoost Model Training")
-    st.markdown("""
-CatBoost is particularly effective for small to medium-sized datasets and handles categorical data well. It includes built-in mechanisms to deal with class imbalance using `auto_class_weights='Balanced'`, making it ideal for our dividend prediction task.
-""")
-    st.code("""
-from catboost import CatBoostClassifier
+# with catboost_tab:
+#     st.subheader("🐱 CatBoost Model Training")
+#     st.markdown("""
+# CatBoost is particularly effective for small to medium-sized datasets and handles categorical data well. It includes built-in mechanisms to deal with class imbalance using `auto_class_weights='Balanced'`, making it ideal for our dividend prediction task.
+# """)
+#     st.code("""
+# from catboost import CatBoostClassifier
 
-# Define CatBoost model
-cat_model = CatBoostClassifier(
-    iterations=300,
-    learning_rate=0.05,
-    depth=6,
-    loss_function='MultiClass',
-    eval_metric='TotalF1',
-    random_seed=42,
-    verbose=0,
-    auto_class_weights='Balanced'
-)
+# # Define CatBoost model
+# cat_model = CatBoostClassifier(
+#     iterations=300,
+#     learning_rate=0.05,
+#     depth=6,
+#     loss_function='MultiClass',
+#     eval_metric='TotalF1',
+#     random_seed=42,
+#     verbose=0,
+#     auto_class_weights='Balanced'
+# )
 
-# Fit the model
-cat_model.fit(X_train_resampled, y_train_resampled)
+# # Fit the model
+# cat_model.fit(X_train_resampled, y_train_resampled)
 
-# Predict
-y_pred = cat_model.predict(X_test)
-y_pred = y_pred.flatten()
+# # Predict
+# y_pred = cat_model.predict(X_test)
+# y_pred = y_pred.flatten()
 
-# Decode predictions
-y_pred_decoded = [inv_label_map[p] for p in y_pred]
-y_test_decoded = [inv_label_map[t] for t in y_test]
+# # Decode predictions
+# y_pred_decoded = [inv_label_map[p] for p in y_pred]
+# y_test_decoded = [inv_label_map[t] for t in y_test]
 
-from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
-import matplotlib.pyplot as plt
-import seaborn as sns
+# from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+# import matplotlib.pyplot as plt
+# import seaborn as sns
 
-st.subheader("📊 Performance Metrics")
-report = classification_report(y_test_decoded, y_pred_decoded, output_dict=True)
-accuracy = accuracy_score(y_test_decoded, y_pred_decoded)
-st.write("**Accuracy:**", round(accuracy, 4))
-st.json(report)
+# st.subheader("📊 Performance Metrics")
+# report = classification_report(y_test_decoded, y_pred_decoded, output_dict=True)
+# accuracy = accuracy_score(y_test_decoded, y_pred_decoded)
+# st.write("**Accuracy:**", round(accuracy, 4))
+# st.json(report)
 
-cm = confusion_matrix(y_test_decoded, y_pred_decoded, labels=[-1, 0, 1])
-fig, ax = plt.subplots(figsize=(6, 4))
-sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
-            xticklabels=['↓ Decrease', '= Same', '↑ Increase'],
-            yticklabels=['↓ Decrease', '= Same', '↑ Increase'], ax=ax)
-ax.set_title("Confusion Matrix (CatBoost)")
-ax.set_xlabel("Predicted")
-ax.set_ylabel("Actual")
-st.pyplot(fig)
-    """, language="python")
-    st.subheader("📊 Performance Metrics:")
-    st.image("images/catboost.png", caption="Classification Report and Confusion Matrix", use_container_width=700)
+# cm = confusion_matrix(y_test_decoded, y_pred_decoded, labels=[-1, 0, 1])
+# fig, ax = plt.subplots(figsize=(6, 4))
+# sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
+#             xticklabels=['↓ Decrease', '= Same', '↑ Increase'],
+#             yticklabels=['↓ Decrease', '= Same', '↑ Increase'], ax=ax)
+# ax.set_title("Confusion Matrix (CatBoost)")
+# ax.set_xlabel("Predicted")
+# ax.set_ylabel("Actual")
+# st.pyplot(fig)
+#     """, language="python")
+#     st.subheader("📊 Performance Metrics:")
+#     st.image("images/catboost.png", caption="Classification Report and Confusion Matrix", use_container_width=700)
 
 # --- LightGBM Tab ---
 with lightgbm_tab:
@@ -482,20 +483,20 @@ In this project, we aimed to predict dividend changes using structured financial
 Below is a summary of why we chose each model and key highlights from their training results.
 """)
 
-    st.header("🐱 CatBoost")
-    st.markdown("""
-- **Why CatBoost?**
-  - Handles categorical features inherently (though not used directly here).
-  - Excellent performance on small/medium-sized tabular datasets.
-  - Robust to overfitting and handles class imbalance using `auto_class_weights='Balanced'`.
+#     st.header("🐱 CatBoost")
+#     st.markdown("""
+# - **Why CatBoost?**
+#   - Handles categorical features inherently (though not used directly here).
+#   - Excellent performance on small/medium-sized tabular datasets.
+#   - Robust to overfitting and handles class imbalance using `auto_class_weights='Balanced'`.
 
-- **Training Highlights:**
-  - Iterations: 300
-  - Learning Rate: 0.05
-  - Depth: 6
-  - Evaluation Metric: Total F1
-  - auto_class_weights='Balanced' , this handles imbalance!
-""")
+# - **Training Highlights:**
+#   - Iterations: 300
+#   - Learning Rate: 0.05
+#   - Depth: 6
+#   - Evaluation Metric: Total F1
+#   - auto_class_weights='Balanced' , this handles imbalance!
+# """)
 
     st.header("💡 LightGBM Ensemble")
     st.markdown("""
