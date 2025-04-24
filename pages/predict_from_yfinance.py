@@ -309,6 +309,14 @@ if st.button("🔍 Fetch & Predict"):
         st.session_state.input_df = input_df
         st.session_state.ticker = ticker_input
         st.session_state.industry = industry
+        # Show probabilities as chart
+        proba_map = {-1: y_proba[-1], 0: y_proba[0], 1: y_proba[1]}
+        proba_df = pd.DataFrame.from_dict(
+            {label_map[k]: [v] for k, v in proba_map.items()},
+            orient='columns'
+        )
+        st.subheader("🔢 Prediction Probabilities")
+        st.bar_chart(proba_df.T.rename(columns={0: "Probability"}))
 
     except Exception as e:
         st.error(f"❌ Error during prediction: {e}")
