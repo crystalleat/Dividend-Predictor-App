@@ -53,7 +53,6 @@ st.markdown("""
 <style>
 /* Background styling */
 .stApp {
-    background-image: url('https://images.unsplash.com/photo-1508780709619-79562169bc64');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -97,7 +96,6 @@ st.markdown("""
   <li>Akshara Ramprasad MSDS'25</li>
   <li>Samritha Aadhi Ravikumar MSDS'25</li>
   <li>Crystal Leatvanich MSBA'25</li>
-  <li>Github page to access code and workflow : https://github.com/akshara2403/Dividend-Predictor-App</li>
 </ul>
 </div>
 """, unsafe_allow_html=True)
