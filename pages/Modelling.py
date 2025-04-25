@@ -448,4 +448,9 @@ with model_choosing_Tab:
   - Highly optimized gradient boosting algorithm.
   - Strong performance on structured/tabular data.
   - Good regularization capabilities (L1/L2) to prevent overfitting.
+- **Training Highlights:**
+  - Model Objective: Multiclass classification with softprob output for 3 dividend change classes (Increase, Decrease, No Change).
+  - Hyperparameters: Trained with learning_rate = 0.05, max_depth = 5, and n_estimators = 300 for balanced performance.
+  - Class Imbalance Handling: Used SMOTE oversampling on minority classes before training to improve recall on rare outcomes.
+  - Industry-Specific Training: Separate models were trained for each sector — Consumer, Financials, Energy, and Others — to better capture domain-specific patterns.
 """)
