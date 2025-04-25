@@ -17,7 +17,7 @@ These ratios provide insights into a company's dividend reliability, profitabili
 st.title("📊 Financial Ratios Used in Prediction")
 
 # Target / Outcome
-st.body("Target / Outcome")
+st.subheader("Target / Outcome")
 st.markdown("""
 - **Dividend Payout Ratio (DPR)**  
   $$
@@ -26,7 +26,7 @@ st.markdown("""
 """)
 
 # Profitability
-st.body("Profitability Ratios")
+st.subheader("Profitability Ratios")
 st.markdown("""
 - **Return on Equity (ROE)**  
   $$
