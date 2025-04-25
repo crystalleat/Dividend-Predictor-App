@@ -53,7 +53,7 @@ st.markdown("""
 <style>
 /* Background styling */
 .stApp {
-    background-image: url('https://images.unsplash.com/photo-1581090700227-1e8a4b9dc1e5?auto=format&fit=crop&w=1470&q=80');
+    background-image: url('https://images.unsplash.com/photo-1612831455543-32844b98e272?auto=format&fit=crop&w=1500&q=80');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
