@@ -202,16 +202,16 @@ if st.button("🔍 Fetch & Predict"):
         y_proba = model.predict_proba(input_df)[0]
 
         label_map = {
-             -1: "📉 Decrease",
-             0: "➖ No Change",
-             1: "📈 Increase"
+             0: "📉 Decrease",
+             1: "➖ No Change",
+             2: "📈 Increase"
         }
         # Display prediction
         pred = int(y_pred.flatten()[0]) if hasattr(y_pred, 'flatten') else int(y_pred[0])
         st.success(f"📊 Predicted Dividend Change: *{label_map[pred]}*")
 
         # Show probabilities as chart
-        proba_map = {-1: y_proba[-1], 0: y_proba[0], 1: y_proba[1]}
+        proba_map = {0: y_proba[0], 1: y_proba[1], 2: y_proba[2]}
         proba_df = pd.DataFrame.from_dict(
             {label_map[k]: [v] for k, v in proba_map.items()},
             orient='columns'
