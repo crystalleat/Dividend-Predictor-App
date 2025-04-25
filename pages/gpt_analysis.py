@@ -73,46 +73,60 @@ import openai
 
 st.title("🤖 GPT-Powered Dividend Interpretation")
 
+# 🔐 Ask user for API key
+api_key = st.text_input("🔐 Enter your OpenAI API Key", type="password")
+if not api_key:
+    st.warning("⚠️ Please enter your OpenAI API key above to continue.")
+    st.stop()
+
+openai.api_key = api_key
+
+# ✅ Check if prediction was done earlier
 if "prediction_label" not in st.session_state or "input_df" not in st.session_state:
     st.warning("⚠️ Please run a prediction first from the yFinance page.")
     st.stop()
 
-# Load session state
+# 🔄 Load values from session state
 label = st.session_state.prediction_label
 ratios = st.session_state.input_df.iloc[0].to_dict()
 ticker = st.session_state.get("ticker", "N/A")
 industry = st.session_state.get("industry", "Unknown")
 
-# Setup GPT
-openai.api_key = st.secrets["openai"]["api_key"]
+# 🧠 Create GPT prompt
+clean_label = label.lower().replace("📈", "increase").replace("📉", "decrease").replace("➖", "stay the same")
 
-# Create prompt
 prompt = f"""
-You are a financial analyst AI. A model predicted that the dividend for ticker {ticker} in the {industry} industry will {label.lower().replace('📈 ', 'increase').replace('📉 ', 'decrease').replace('➖ ', 'stay the same')}.
-Here are the financial ratios:
+You are a financial analyst AI. A model predicted that the dividend for ticker {ticker} in the {industry} industry will {clean_label}.
+Here are the financial ratios (dictionary format):
 {ratios}
 
-Please provide a professional and insightful analysis of why this dividend outcome is likely, referencing key ratios.
+Please provide a concise, insightful, and professional analysis explaining the likely reasons behind this dividend change. Highlight the key ratios involved and relate them to the outcome.
 """
 
-# Call GPT
+# 🤖 Call OpenAI API
 with st.spinner("Generating GPT analysis..."):
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": "You are a financial analyst."},
-            {"role": "user", "content": prompt}
-        ],
-        temperature=0.7,
-        max_tokens=500
-    )
+    try:
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are a financial analyst."},
+                {"role": "user", "content": prompt}
+            ],
+            temperature=0.7,
+            max_tokens=500
+        )
 
-# Output GPT response
-gpt_output = response.choices[0].message["content"]
-st.markdown("### 📘 GPT Analysis")
-st.write(gpt_output)
+        gpt_output = response.choices[0].message["content"]
 
-# Show input data
+        # ✅ Display GPT result
+        st.markdown("### 📘 GPT Analysis")
+        st.write(gpt_output)
+
+    except Exception as e:
+        st.error(f"❌ Error during GPT response: {e}")
+        st.stop()
+
+# 📊 Show original ratios for reference
 st.markdown("---")
 st.subheader("📊 Financial Ratios Used")
 st.dataframe(st.session_state.input_df.T)
