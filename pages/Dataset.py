@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 st.title("🏠 About our Dataset")
 
-st.subheader(" Access our Colab notebook here : https://colab.research.google.com/drive/1Ocjx5k9_szTnyFYZKBLshATQ1fFTpbeV?usp=sharing")
+st.markdown(" Access our Colab notebook here : https://colab.research.google.com/drive/1Ocjx5k9_szTnyFYZKBLshATQ1fFTpbeV?usp=sharing")
 # --- Load training dataset ---
 try:
     df = pd.read_csv("data/dividends.csv")
