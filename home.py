@@ -15,8 +15,9 @@ st.markdown("""
 
 
 <br>
-**Team Members:**  
-**- Akshara Ramprasad MSDS'25**  
-**- Samritha Aadhi Ravikumar MSDS'25**  
-**- Crystal Leatvanich MSBA'25**
+<span style='font-size: 18px; font-weight: bold;'>
+Team Members:  
+- Akshara Ramprasad MSDS'25  
+- Samritha Aadhi Ravikumar MSDS'25  
+- Crystal Leatvanich MSBA'25 </span>
 """, unsafe_allow_html=True)
