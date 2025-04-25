@@ -300,18 +300,20 @@ if st.button("🔍 Fetch & Predict"):
         with open(model_path, "rb") as f:
             model = pickle.load(f)
 
+                # Prediction and probabilities
         y_pred = model.predict(input_df)
         y_proba = model.predict_proba(input_df)[0]
-        label_map = {0: "📉 Decrease", 1: "➖ No Change", 2: "📈 Increase"}
-        pred = int(y_pred.flatten()[0]) if hasattr(y_pred, 'flatten') else int(y_pred[0])
 
-        st.success(f"📊 Predicted Dividend Change: **{label_map[pred]}**")
-        st.session_state.prediction_label = label_map[pred]
-        st.session_state.input_df = input_df
-        st.session_state.ticker = ticker_input
-        st.session_state.industry = industry
+        label_map = {
+            -1: "📉 Decrease",
+             0: "➖ No Change",
+             1: "📈 Increase"
+        }
+  # Display prediction
+        pred = int(y_pred.flatten()[0]) if hasattr(y_pred, 'flatten') else int(y_pred[0])
+        st.success(f"📊 Predicted Dividend Change: *{label_map[pred]}*")
+
         # Show probabilities as chart
-        
         proba_map = {-1: y_proba[-1], 0: y_proba[0], 1: y_proba[1]}
         proba_df = pd.DataFrame.from_dict(
             {label_map[k]: [v] for k, v in proba_map.items()},
@@ -322,4 +324,3 @@ if st.button("🔍 Fetch & Predict"):
 
     except Exception as e:
         st.error(f"❌ Error during prediction: {e}")
-
