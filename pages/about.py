@@ -1,66 +1,50 @@
 import streamlit as st
 
-st.title("About This App")
+st.title("📘 Overview")
 
 st.markdown("""
-Welcome to the **Dividend Change Prediction App** — an interactive dashboard that forecasts whether a public company's dividend will:
+### Project Objectives
 
-- 📉 **Decrease**
-- ➖ **Stay the Same**
-- 📈 **Increase**
-
-based on its **latest financial statement data**.
+The application is designed to assist financial analysts and investors in evaluating dividend trends across industries. By leveraging historical financial data and machine learning, it aims to predict whether a company is likely to **increase**, **decrease**, or **maintain** its dividend payout. 
 
 ---
 
-###  Project Objectives
+### Uses for a Dividend Prediction Model
 
-- Leverage historical financial ratios to train predictive models
-- Enable real-time predictions using data pulled from `yfinance`
-- Provide clear explainability via classification reports, confusion matrices, and feature importance
-
----
-
-### 🤖 Machine Learning Models Used
-
--  **XGBoost** — gradient-boosted trees
--  **CatBoost** — handles categorical + imbalanced data well
--  **LightGBM + Ensemble** — combined with logistic regression and decision trees for robustness
+- **🔔 Alerting System**: Real-time alerts for dividend payment likelihood based on new financial data.  
+- **📊 Comparative Analysis**: Rank companies within the same industry based on dividend probability.  
+- **📈 Portfolio Construction**: Select high-probability dividend-paying stocks for income-focused portfolios.  
+- **🏥 Screening for Financial Health**: Use model insights to assess company financial stability.  
 
 ---
 
-###  Features Engineered
+### Key Features
 
-Each model uses 16 key financial ratios, including:
-
-- **Profitability:** ROE, ROA, Net Profit Margin, Gross Profit
-- **Cash Flow:** FCF/OCF, Cash/Debt, OCF/LTD
-- **Leverage:** Debt/Equity, Debt/EBITDA, Interest Coverage
-- **Liquidity:** Current Ratio, Quick Ratio
-- **Dividend Payout Ratio (DPR)**
+- **20 Years of Financial Ratios**: Trains predictive models using long-term financial metrics.  
+- **Real-Time Prediction**: Live data fetched from Yahoo Finance using `yfinance`.  
+- **Industry-Specific Modeling**: Custom models trained for sectors like **Financials**, **Consumer Discretionary**, and **Energy (Oil & Gas)**.  
 
 ---
 
-### 🧾 Data Sources
+### Machine Learning Models
 
-- **Training Data:** WRDS / CRSP export merged with financial ratios
-- **Test Data:** Live quarterly financials pulled using `yfinance`
-
----
-
-### 📦 Tools & Libraries
-
-- `streamlit`, `pandas`, `matplotlib`, `seaborn`
-- `scikit-learn`, `xgboost`, `lightgbm`, `catboost`
-- `yfinance` for dynamic company data
+- **XGBoost**: Gradient-boosted trees with high accuracy and efficiency.  
+- **CatBoost**: Handles categorical variables and imbalanced data effectively.  
+- **LightGBM + Ensemble**: Combines boosting with logistic regression and decision trees.  
 
 ---
 
-### 👩‍💻 Developed by
+### Data Sources
 
-**Akshara Ramprasad** MSDS 2025
-**Samritha Aadhi Ravikumar** MSDS 2025
-**Crystal Leatvanich** 
+- **Training Data**: WRDS / CRSP export merged with financial ratios.  
+- **Test Data**: Real-time financials pulled dynamically via `yfinance`.  
 
 ---
+
+### Future Updates
+
+- **Addressing Data Imbalance**: Future versions will refine sample selection to better balance classes.  
+- **Expanded Industry & Global Coverage**: Include more sectors and international stocks.  
+- **Model Monitoring & Alerts**: Add tools to track model drift and trigger alerts on drastic financial changes.  
 """)
+
