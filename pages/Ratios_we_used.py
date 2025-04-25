@@ -4,8 +4,11 @@ st.title("📘 Financial Ratios we used")
 
 st.markdown("""
 This Dividend App leverages a combination of WRDS (Wharton Research Data Services) and real-time financials from yfinance to generate accurate and meaningful financial ratios.
--	WRDS / CRSP: Used for training data, historical dividend payout information, and standardized financial ratios from the Financial Ratios Suite by WRDS and CRSP (Center for Research in Security Prices).
-o	The data cleaning included only keeping true dividend payment columns as well as relevant ratios. A new column was created to classify dividend changes as an increase, decrease, or no change based on the next quarter’s dividend. Each company was assigned an industry label based on the ticker. Missing values across key financial ratios were filled using ticker specific averages. Liquidity ratios were defaulted to zero for financial companies, as these firms typically do not report or rely on these ratios due to their business structure. 
+-	WRDS / CRSP: 
+                - Used for training data, historical dividend payout information, and standardized financial ratios from the Financial Ratios Suite by WRDS and CRSP (Center for Research in Security Prices).
+                - The data cleaning included only keeping true dividend payment columns as well as relevant ratios. A new column was created to classify dividend changes as an increase, decrease, or no change based on the next quarter’s dividend. 
+                - Each company was assigned an industry label based on the ticker. Missing values across key financial ratios were filled using ticker specific averages. 
+                - Liquidity ratios were defaulted to zero for financial companies, as these firms typically do not report or rely on these ratios due to their business structure. 
 -	yfinance: Used for live testing data. Financial ratios are calculated manually by combining line items from income statements, balance sheets, and cash flow statements.
 These ratios provide insights into a company's dividend reliability, profitability, leverage, liquidity, cash flow health, and market valuation.
 
