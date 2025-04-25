@@ -309,14 +309,14 @@ Explore the training code, rationale, and performance of each model (CatBoost, X
 
 # Define tabs
 catboost_tab, xgboost_tab, lightgbm_tab, model_choosing_Tab = st.tabs([
-    "🐱 CatBoost",
-    "🌲 XGBoost",
-    "💡 LightGBM Ensemble",
-    "📌 Model Choice Rationale and Summary"
+    "CatBoost",
+    "XGBoost",
+    "LightGBM Ensemble",
+    "Model Choice Rationale and Summary"
 ])
 
 with catboost_tab:
-    st.subheader("🐱 CatBoost Model Training")
+    st.subheader("CatBoost Model Training")
     st.markdown("""
 CatBoost is particularly effective for small to medium-sized datasets and handles categorical data well. It includes built-in mechanisms to deal with class imbalance using `auto_class_weights='Balanced'`, making it ideal for our dividend prediction task.
 """)
@@ -364,15 +364,15 @@ tree_model = DecisionTreeClassifier(class_weight='balanced', max_depth=5)
 ensemble = VotingClassifier(estimators=[('lgb', lgb_model), ('lr', log_model), ('dt', tree_model)], voting='soft')
 ensemble.fit(X_train_resampled, y_train_resampled)
     """, language="python")
-    st.subheader("📊 1. Voting Ensemble method :")
+    st.subheader("1. Voting Ensemble method :")
     st.image("images/le.png", caption="Classification Report Ensemble", use_column_width=True)
     st.image("images/lightensemble.png", caption="Confusion Matrix Ensemble", use_column_width=True)
-    st.subheader("📊 2. Financial Sector :")
+    st.subheader("2. Financial Sector :")
     st.image("images/lf.png", caption="Classification Report for Financial", use_column_width=True)
     st.image("images/lfconf.png", caption="Confusion Matrix for Financial", use_column_width=True)
 
 with xgboost_tab:
-    st.subheader("🌲 XGBoost Model Training")
+    st.subheader("XGBoost Model Training")
     st.markdown("""XGBoost is a gradient boosting framework that excels on structured/tabular data. It’s widely used for its speed, regularization capabilities, and scalability.""")
     st.code("""
 from xgboost import XGBClassifier
@@ -398,23 +398,23 @@ y_pred = model.predict(X_test)
 y_pred_decoded = [inv_label_map[p] for p in y_pred]
 y_test_decoded = [inv_label_map[t] for t in y_test]
     """, language="python")
-    st.subheader("📊 1. Consumer Sector :")
+    st.subheader("1. Consumer Sector :")
     st.image("images/xgbc.png", caption="Classification Report for Consumer", use_column_width=True)
     st.image("images/xgbcconf.png", caption="Confusion Matrix for Consumer", use_column_width=True)
-    st.subheader("📊 2. Energy Sector :")
+    st.subheader("2. Energy Sector :")
     st.image("images/xgbe.png", caption="Classification Report for Energy", use_column_width=True)
     st.image("images/xgbeconf.png", caption="Confusion Matrix for Energy", use_column_width=True)
-    st.subheader("📊 3. Financial Sector :")
+    st.subheader("3. Financial Sector :")
     st.image("images/xgbf.png", caption="Classification Report for Financial", use_column_width=True)
     st.image("images/xgbfconf.png", caption="Confusion Matrix for Financial", use_column_width=True)
-    st.subheader("📊 4. Other Sector :")
+    st.subheader("4. Other Sector :")
     st.image("images/xgbo.png", caption="Classification Report for Other", use_column_width=True)
     st.image("images/xgboconf.png", caption="Confusion Matrix for Other", use_column_width=True)
 
 with model_choosing_Tab:
-    st.title("🔍 Model Choice Rationale and Training Summary")
+    st.title("Model Choice Rationale and Training Summary")
 
-    st.header("🐱 CatBoost")
+    st.header("CatBoost")
     st.markdown("""
 - **Why CatBoost?**
   - Handles categorical features inherently (though not used directly here).
@@ -429,7 +429,7 @@ with model_choosing_Tab:
   - auto_class_weights='Balanced'
 """)
 
-    st.header("💡 LightGBM Ensemble")
+    st.header("LightGBM Ensemble")
     st.markdown("""
 - **Why LightGBM Ensemble?**
   - Fast, efficient boosting algorithm optimized for speed and memory.
@@ -442,7 +442,7 @@ with model_choosing_Tab:
   - Industry-specific models saved individually
 """)
 
-    st.header("🌲 XGBoost")
+    st.header("XGBoost")
     st.markdown("""
 - **Why XGBoost?**
   - Highly optimized gradient boosting algorithm.
