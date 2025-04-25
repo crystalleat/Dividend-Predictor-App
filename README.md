@@ -87,12 +87,13 @@ Folder Structure
 ├── requirements.txt
 └── README.md
 ```
-Team Members
-Akshara Ramprasad – MSDS 2025
+Team Members:
 
-Samritha Aadhi Ravikumar – MSDS 2025
+- Akshara Ramprasad – MSDS 2025
 
-Crystal Leatvanich – MSBA 2025
+- Samritha Aadhi Ravikumar – MSDS 2025
+
+- Crystal Leatvanich – MSBA 2025
 
 Future Work
 
