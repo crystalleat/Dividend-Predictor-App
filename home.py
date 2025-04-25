@@ -6,6 +6,26 @@ import streamlit as st
 #     page_icon="📈",
 #     layout="wide"
 # )
+import streamlit as st
+
+# Set page config
+st.set_page_config(page_title="Home", layout="wide")
+
+# Inject CSS for background image
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-image: url("https://images.unsplash.com/photo-1454165804606-c3d57bc86b40");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 st.title("📊 Dividend Trend Predictor")
 
