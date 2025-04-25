@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-st.title("📘 Financial Ratios we used")
+st.header("📊 Financial Ratios Used in Prediction")
 
 st.markdown("""
 This Dividend App leverages a combination of WRDS (Wharton Research Data Services) and real-time financials from yfinance to generate accurate and meaningful financial ratios.
@@ -14,7 +14,6 @@ These ratios provide insights into a company's dividend reliability, profitabili
 
 """)
 
-st.header("📊 Financial Ratios Used in Prediction")
 
 # Target / Outcome
 st.markdown("#### Target / Outcome")
@@ -26,7 +25,7 @@ st.markdown("""
 """)
 
 # Profitability
-st.subheader("Profitability Ratios")
+st.markdown("#### Profitability Ratios")
 st.markdown("""
 - **Return on Equity (ROE)**  
   $$
@@ -50,7 +49,7 @@ st.markdown("""
 """)
 
 # Cash Flow
-st.subheader("💵 Cash Flow Ratios")
+st.markdown("#### Cash Flow Ratios")
 st.markdown("""
 - **Free Cash Flow to Operating Cash Flow (FCF/OCF)**  
   $$
@@ -74,7 +73,7 @@ st.markdown("""
 """)
 
 # Leverage
-st.subheader("📉 Leverage Ratios")
+st.markdown("#### Leverage Ratios")
 st.markdown("""
 - **Total Debt to Invested Capital**  
   $$
@@ -98,7 +97,7 @@ st.markdown("""
 """)
 
 # Liquidity
-st.subheader("💧 Liquidity Ratios")
+st.markdown("#### Liquidity Ratios")
 st.markdown("""
 - **Current Ratio**  
   $$
@@ -117,7 +116,7 @@ st.markdown("""
 """)
 
 # Valuation
-st.subheader("📊 Valuation / Market")
+st.markdown("#### Valuation / Market")
 st.markdown("""
 - **Price-to-Book Proxy (P/B)**  
   $$
