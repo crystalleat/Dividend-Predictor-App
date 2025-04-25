@@ -322,5 +322,39 @@ if st.button("🔍 Fetch & Predict"):
         st.subheader("🔢 Prediction Probabilities")
         st.bar_chart(proba_df.T.rename(columns={0: "Probability"}))
 
+        # 🔐 API Key Input
+        api_key = st.text_input("🔐 Enter your OpenAI API Key", type="password")
+        if api_key:
+            import openai
+            openai.api_key = api_key
+            # Prepare GPT prompt
+            label = label_map[pred]
+            ratios_text = "\n".join([f"{k}: {v}" for k, v in ratios.items()])
+            prompt = f"""
+            You are a financial analyst AI. A model predicted that the dividend for ticker {ticker_input} in the {industry} industry will {label.lower().replace('📈 ', 'increase').replace('📉 ', 'decrease').replace('➖ ', 'stay the same')}.
+            Here are the financial ratios:\n{ratios_text}
+        
+            Please provide a professional and insightful explanation of this prediction, referencing key financial ratios.
+            """
+        
+            with st.spinner("💬 Generating GPT analysis..."):
+                try:
+                    response = openai.ChatCompletion.create(
+                        model="gpt-3.5-turbo",
+                        messages=[
+                            {"role": "system", "content": "You are a financial analyst."},
+                            {"role": "user", "content": prompt}
+                        ],
+                        temperature=0.7,
+                        max_tokens=500
+                    )
+                    gpt_output = response.choices[0].message["content"]
+                    st.markdown("### 📘 GPT Interpretation")
+                    st.write(gpt_output)
+        
+                except Exception as e:
+                    st.error(f"⚠️ GPT API call failed: {e}")
+
+
     except Exception as e:
         st.error(f"❌ Error during prediction: {e}")
