@@ -305,9 +305,9 @@ if st.button("🔍 Fetch & Predict"):
         y_proba = model.predict_proba(input_df)[0]
 
         label_map = {
-             0: "📉 Decrease",
-             1: "➖ No Change",
-             2: "📈 Increase"
+             -1: "📉 Decrease",
+             0: "➖ No Change",
+             1: "📈 Increase"
         }
   # Display prediction
         pred = int(y_pred.flatten()[0]) if hasattr(y_pred, 'flatten') else int(y_pred[0])
