@@ -95,13 +95,15 @@ Samritha Aadhi Ravikumar – MSDS 2025
 Crystal Leatvanich – MSBA 2025
 
 Future Work
-Expand model to include more sectors and global tickers
 
-Improve class imbalance handling using smarter sampling
+- Expand model to include more sectors and global tickers
 
-Add model drift monitoring and alerts
+- Improve class imbalance handling using smarter sampling
+
+- Add model drift monitoring and alerts
 
 License
-MIT License. Feel free to use and modify with credit.
+
+- MIT License. Feel free to use and modify with credit.
 
 Created as part of BA870 Financial Analytics @ Boston University
