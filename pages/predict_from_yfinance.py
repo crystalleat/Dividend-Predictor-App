@@ -224,7 +224,6 @@ if st.button("🔍 Fetch & Predict"):
         st.session_state.ticker = ticker_input
         st.session_state.industry = industry
 
-        st.success(f"📊 Predicted Dividend Change: **{label_map[pred]}**")
 
         # 🧠 Heuristic GPT-style interpretation
         st.markdown("---")
