@@ -88,14 +88,12 @@ st.markdown("""
 # Render content with classes
 st.title("📊 Dividend Trend Predictor")
 
+st.markdown("## BA870 Financial Analytics - Final Project")
+
 st.markdown("""
-<div class="custom-header">BA870 Financial Analytics - Final Project</div>
-<br>
-<div class="team-names">
-<ul>
-  <li>Akshara Ramprasad MSDS'25</li>
-  <li>Samritha Aadhi Ravikumar MSDS'25</li>
-  <li>Crystal Leatvanich MSBA'25</li>
-</ul>
-</div>
-""", unsafe_allow_html=True)
+**Team Members:**
+
+- Akshara Ramprasad MSDS'25  
+- Samritha Aadhi Ravikumar MSDS'25  
+- Crystal Leatvanich MSBA'25
+""")
