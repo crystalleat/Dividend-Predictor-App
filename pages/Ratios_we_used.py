@@ -16,37 +16,111 @@ These ratios provide insights into a company's dividend reliability, profitabili
 
 st.title("📊 Financial Ratios Used in Prediction")
 
-data = [
-    ("DPR", "Dividend Payout Ratio", r"$$\text{DPR} = \frac{\text{Cash Dividends Paid}}{\text{Net Income}}$$"),
-    ("ROE", "Return on Equity", r"$$\text{ROE} = \frac{\text{Net Income}}{\text{Stockholders' Equity}}$$"),
-    ("ROA", "Return on Assets", r"$$\text{ROA} = \frac{\text{Net Income}}{\text{Total Assets}}$$"),
-    ("GProf", "Gross Profit Margin", r"$$\text{GProf} = \frac{\text{Gross Profit}}{\text{Total Revenue}}$$"),
-    ("NPM", "Net Profit Margin", r"$$\text{NPM} = \frac{\text{Net Income}}{\text{Total Revenue}}$$"),
-    ("FCF/OCF", "Free Cash Flow to Operating Cash Flow", r"$$\frac{\text{Free Cash Flow}}{\text{Operating Cash Flow}}$$"),
-    ("Cash/Debt", "Cash to Total Debt Ratio", r"$$\frac{\text{Cash and Cash Equivalents}}{\text{Total Debt}}$$"),
-    ("Cash/LT", "Cash to Long-Term Debt", r"$$\frac{\text{Cash and Cash Equivalents}}{\text{Long-Term Debt}}$$"),
-    ("OCF/LTD", "OCF to Long-Term Debt", r"$$\frac{\text{Operating Cash Flow}}{\text{Long-Term Debt}}$$"),
-    ("TD/IC", "Total Debt to Invested Capital", r"$$\frac{\text{Total Debt}}{\text{Invested Capital}}$$"),
-    ("D/E", "Debt to Equity", r"$$\frac{\text{Total Debt}}{\text{Stockholders' Equity}}$$"),
-    ("Debt/EBITDA", "Debt to EBITDA", r"$$\frac{\text{Total Debt}}{\text{EBITDA}}$$"),
-    ("IntCov", "Interest Coverage Ratio", r"$$\frac{\text{EBIT}}{\text{Interest Expense}}$$"),
-    ("Current Ratio", "Current Ratio", r"$$\frac{\text{Current Assets}}{\text{Current Liabilities}}$$"),
-    ("Cash Ratio", "Cash Ratio", r"$$\frac{\text{Cash and Cash Equivalents}}{\text{Current Liabilities}}$$"),
-    ("Quick Ratio", "Quick Ratio", r"$$\frac{\text{Current Assets} - \text{Inventory}}{\text{Current Liabilities}}$$"),
-    ("P/B", "Price to Book (inverse)", r"$$\frac{\text{Stockholders' Equity}}{\text{Total Assets}}$$")
-]
-
-for short, desc, formula in data:
-    st.markdown(f"""
-**{short}** — *{desc}*  
-{formula}
----
+# Target / Outcome
+st.header("Target / Outcome")
+st.markdown("""
+- **Dividend Payout Ratio (DPR)**  
+  $$
+  \\text{DPR} = \\frac{\\text{Cash Dividends Paid}}{\\text{Net Income}}
+  $$
 """)
-# # Valuation
-# st.header("📊 Valuation / Market")
-# st.markdown("""
-# - **Price-to-Book Proxy (P/B)**  
-#   $$
-#   \\text{P/B} = \\frac{\\text{Stockholders' Equity}}{\\text{Total Assets}}
-#   $$
-# """)
+
+# Profitability
+st.subheader("Profitability Ratios")
+st.markdown("""
+- **Return on Equity (ROE)**  
+  $$
+  \\text{ROE} = \\frac{\\text{Net Income}}{\\text{Stockholders' Equity}}
+  $$
+
+- **Return on Assets (ROA)**  
+  $$
+  \\text{ROA} = \\frac{\\text{Net Income}}{\\text{Total Assets}}
+  $$
+
+- **Gross Profit Margin (GProf)**  
+  $$
+  \\text{GProf} = \\frac{\\text{Gross Profit}}{\\text{Total Revenue}}
+  $$
+
+- **Net Profit Margin (NPM)**  
+  $$
+  \\text{NPM} = \\frac{\\text{Net Income}}{\\text{Total Revenue}}
+  $$
+""")
+
+# Cash Flow
+st.header("💵 Cash Flow Ratios")
+st.markdown("""
+- **Free Cash Flow to Operating Cash Flow (FCF/OCF)**  
+  $$
+  \\text{FCF/OCF} = \\frac{\\text{Free Cash Flow}}{\\text{Operating Cash Flow}}
+  $$
+
+- **Cash to Total Debt**  
+  $$
+  \\text{Cash/Total Debt} = \\frac{\\text{Cash and Cash Equivalents}}{\\text{Total Debt}}
+  $$
+
+- **Cash to Long-Term Debt**  
+  $$
+  \\text{Cash/LT Debt} = \\frac{\\text{Cash and Cash Equivalents}}{\\text{Long-Term Debt}}
+  $$
+
+- **Operating Cash Flow to Long-Term Debt**  
+  $$
+  \\text{OCF/LT Debt} = \\frac{\\text{Operating Cash Flow}}{\\text{Long-Term Debt}}
+  $$
+""")
+
+# Leverage
+st.header("📉 Leverage Ratios")
+st.markdown("""
+- **Total Debt to Invested Capital**  
+  $$
+  \\text{Total Debt/InvCap} = \\frac{\\text{Total Debt}}{\\text{Invested Capital}}
+  $$
+
+- **Debt to Equity Ratio (D/E)**  
+  $$
+  \\text{D/E} = \\frac{\\text{Total Debt}}{\\text{Stockholders' Equity}}
+  $$
+
+- **Debt to EBITDA**  
+  $$
+  \\text{Debt/EBITDA} = \\frac{\\text{Total Debt}}{\\text{EBITDA}}
+  $$
+
+- **Interest Coverage Ratio**  
+  $$
+  \\text{IntCov} = \\frac{\\text{EBIT}}{\\text{Interest Expense}}
+  $$
+""")
+
+# Liquidity
+st.header("💧 Liquidity Ratios")
+st.markdown("""
+- **Current Ratio**  
+  $$
+  \\text{Current Ratio} = \\frac{\\text{Current Assets}}{\\text{Current Liabilities}}
+  $$
+
+- **Cash Ratio**  
+  $$
+  \\text{Cash Ratio} = \\frac{\\text{Cash and Cash Equivalents}}{\\text{Current Liabilities}}
+  $$
+
+- **Quick Ratio**  
+  $$
+  \\text{Quick Ratio} = \\frac{\\text{Current Assets} - \\text{Inventory}}{\\text{Current Liabilities}}
+  $$
+""")
+
+# Valuation
+st.header("📊 Valuation / Market")
+st.markdown("""
+- **Price-to-Book Proxy (P/B)**  
+  $$
+  \\text{P/B} = \\frac{\\text{Stockholders' Equity}}{\\text{Total Assets}}
+  $$
+""")
