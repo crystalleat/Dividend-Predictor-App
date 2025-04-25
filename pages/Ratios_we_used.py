@@ -12,111 +12,50 @@ These ratios provide insights into a company's dividend reliability, profitabili
 
 """)
 
-# Target / Outcome
-st.header("🎯 Target / Outcome")
-st.markdown("""
-- **Dividend Payout Ratio (DPR)**  
-  $$
-  \\text{DPR} = \\frac{\\text{Cash Dividends Paid}}{\\text{Net Income}}
-  $$
-""")
+st.title("📊 Financial Ratios Used in Prediction")
 
-# Profitability
-st.header("💰 Profitability Ratios")
-st.markdown("""
-- **Return on Equity (ROE)**  
-  $$
-  \\text{ROE} = \\frac{\\text{Net Income}}{\\text{Stockholders' Equity}}
-  $$
+# Data
+data = {
+    "Short Name": [
+        "DPR", "ROE", "ROA", "GProf", "NPM", "FCF/OCF", "Cash/Debt", "Cash/LT", "OCF/LTD",
+        "TD/IC", "D/E", "Debt/EBITDA", "IntCov", "Current Ratio", "Cash Ratio", "Quick Ratio", "P/B"
+    ],
+    "Description": [
+        "Dividend Payout Ratio", "Return on Equity", "Return on Assets", "Gross Profit Margin", "Net Profit Margin",
+        "Free Cash Flow to Operating Cash Flow", "Cash to Total Debt Ratio", "Cash to Long-Term Debt Ratio",
+        "Operating Cash Flow to Long-Term Debt", "Total Debt to Invested Capital Ratio", "Debt to Equity Ratio",
+        "Debt to EBITDA Ratio", "Interest Coverage Ratio", "Current Ratio", "Cash Ratio", "Quick Ratio",
+        "Price to Book Ratio (inverse form)"
+    ],
+    "Formula": [
+        "cash_dividends_paid / net_income",
+        "net_income / stockholders_equity",
+        "net_income / total_assets",
+        "gross_profit / total_revenue",
+        "net_income / total_revenue",
+        "free_cash_flow / operating_cash_flow",
+        "cash_and_cash_equivalents / total_debt",
+        "cash_and_cash_equivalents / long_term_debt",
+        "operating_cash_flow / long_term_debt",
+        "total_debt / invested_capital",
+        "total_debt / stockholders_equity",
+        "total_debt / ebitda",
+        "ebit / interest_expense",
+        "current_assets / current_liabilities",
+        "cash_and_cash_equivalents / current_liabilities",
+        "(current_assets - inventory) / current_liabilities",
+        "stockholders_equity / total_assets"
+    ]
+}
 
-- **Return on Assets (ROA)**  
-  $$
-  \\text{ROA} = \\frac{\\text{Net Income}}{\\text{Total Assets}}
-  $$
+df = pd.DataFrame(data)
+st.dataframe(df, use_container_width=True)
 
-- **Gross Profit Margin (GProf)**  
-  $$
-  \\text{GProf} = \\frac{\\text{Gross Profit}}{\\text{Total Revenue}}
-  $$
-
-- **Net Profit Margin (NPM)**  
-  $$
-  \\text{NPM} = \\frac{\\text{Net Income}}{\\text{Total Revenue}}
-  $$
-""")
-
-# Cash Flow
-st.header("💵 Cash Flow Ratios")
-st.markdown("""
-- **Free Cash Flow to Operating Cash Flow (FCF/OCF)**  
-  $$
-  \\text{FCF/OCF} = \\frac{\\text{Free Cash Flow}}{\\text{Operating Cash Flow}}
-  $$
-
-- **Cash to Total Debt**  
-  $$
-  \\text{Cash/Total Debt} = \\frac{\\text{Cash and Cash Equivalents}}{\\text{Total Debt}}
-  $$
-
-- **Cash to Long-Term Debt**  
-  $$
-  \\text{Cash/LT Debt} = \\frac{\\text{Cash and Cash Equivalents}}{\\text{Long-Term Debt}}
-  $$
-
-- **Operating Cash Flow to Long-Term Debt**  
-  $$
-  \\text{OCF/LT Debt} = \\frac{\\text{Operating Cash Flow}}{\\text{Long-Term Debt}}
-  $$
-""")
-
-# Leverage
-st.header("📉 Leverage Ratios")
-st.markdown("""
-- **Total Debt to Invested Capital**  
-  $$
-  \\text{Total Debt/InvCap} = \\frac{\\text{Total Debt}}{\\text{Invested Capital}}
-  $$
-
-- **Debt to Equity Ratio (D/E)**  
-  $$
-  \\text{D/E} = \\frac{\\text{Total Debt}}{\\text{Stockholders' Equity}}
-  $$
-
-- **Debt to EBITDA**  
-  $$
-  \\text{Debt/EBITDA} = \\frac{\\text{Total Debt}}{\\text{EBITDA}}
-  $$
-
-- **Interest Coverage Ratio**  
-  $$
-  \\text{IntCov} = \\frac{\\text{EBIT}}{\\text{Interest Expense}}
-  $$
-""")
-
-# Liquidity
-st.header("💧 Liquidity Ratios")
-st.markdown("""
-- **Current Ratio**  
-  $$
-  \\text{Current Ratio} = \\frac{\\text{Current Assets}}{\\text{Current Liabilities}}
-  $$
-
-- **Cash Ratio**  
-  $$
-  \\text{Cash Ratio} = \\frac{\\text{Cash and Cash Equivalents}}{\\text{Current Liabilities}}
-  $$
-
-- **Quick Ratio**  
-  $$
-  \\text{Quick Ratio} = \\frac{\\text{Current Assets} - \\text{Inventory}}{\\text{Current Liabilities}}
-  $$
-""")
-
-# Valuation
-st.header("📊 Valuation / Market")
-st.markdown("""
-- **Price-to-Book Proxy (P/B)**  
-  $$
-  \\text{P/B} = \\frac{\\text{Stockholders' Equity}}{\\text{Total Assets}}
-  $$
-""")
+# # Valuation
+# st.header("📊 Valuation / Market")
+# st.markdown("""
+# - **Price-to-Book Proxy (P/B)**  
+#   $$
+#   \\text{P/B} = \\frac{\\text{Stockholders' Equity}}{\\text{Total Assets}}
+#   $$
+# """)
