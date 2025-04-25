@@ -14,7 +14,7 @@ These ratios provide insights into a company's dividend reliability, profitabili
 
 """)
 
-st.title("📊 Financial Ratios Used in Prediction")
+st.header("📊 Financial Ratios Used in Prediction")
 
 # Target / Outcome
 st.subheader("Target / Outcome")
@@ -50,7 +50,7 @@ st.markdown("""
 """)
 
 # Cash Flow
-st.header("💵 Cash Flow Ratios")
+st.subheader("💵 Cash Flow Ratios")
 st.markdown("""
 - **Free Cash Flow to Operating Cash Flow (FCF/OCF)**  
   $$
@@ -74,7 +74,7 @@ st.markdown("""
 """)
 
 # Leverage
-st.header("📉 Leverage Ratios")
+st.subheader("📉 Leverage Ratios")
 st.markdown("""
 - **Total Debt to Invested Capital**  
   $$
@@ -98,7 +98,7 @@ st.markdown("""
 """)
 
 # Liquidity
-st.header("💧 Liquidity Ratios")
+st.subheader("💧 Liquidity Ratios")
 st.markdown("""
 - **Current Ratio**  
   $$
@@ -117,7 +117,7 @@ st.markdown("""
 """)
 
 # Valuation
-st.header("📊 Valuation / Market")
+st.subheader("📊 Valuation / Market")
 st.markdown("""
 - **Price-to-Book Proxy (P/B)**  
   $$
