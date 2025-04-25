@@ -17,43 +17,27 @@ These ratios provide insights into a company's dividend reliability, profitabili
 st.title("📊 Financial Ratios Used in Prediction")
 
 # Data
-# Table Data
-data = {
-    "Short Name": [
-        "DPR", "ROE", "ROA", "GProf", "NPM", "FCF/OCF", "Cash/Debt", "Cash/LT", "OCF/LTD",
-        "TD/IC", "D/E", "Debt/EBITDA", "IntCov", "Current Ratio", "Cash Ratio", "Quick Ratio", "P/B"
-    ],
-    "Description": [
-        "Dividend Payout Ratio", "Return on Equity", "Return on Assets", "Gross Profit Margin", "Net Profit Margin",
-        "Free Cash Flow to Operating Cash Flow", "Cash to Total Debt Ratio", "Cash to Long-Term Debt Ratio",
-        "Operating Cash Flow to Long-Term Debt", "Total Debt to Invested Capital Ratio", "Debt to Equity Ratio",
-        "Debt to EBITDA Ratio", "Interest Coverage Ratio", "Current Ratio", "Cash Ratio", "Quick Ratio",
-        "Price to Book Ratio (inverse form)"
-    ],
-    "Formula": [
-        "cash_dividends_paid / net_income",
-        "net_income / stockholders_equity",
-        "net_income / total_assets",
-        "gross_profit / total_revenue",
-        "net_income / total_revenue",
-        "free_cash_flow / operating_cash_flow",
-        "cash_and_cash_equivalents / total_debt",
-        "cash_and_cash_equivalents / long_term_debt",
-        "operating_cash_flow / long_term_debt",
-        "total_debt / invested_capital",
-        "total_debt / stockholders_equity",
-        "total_debt / ebitda",
-        "ebit / interest_expense",
-        "current_assets / current_liabilities",
-        "cash_and_cash_equivalents / current_liabilities",
-        "(current_assets - inventory) / current_liabilities",
-        "stockholders_equity / total_assets"
-    ]
-}
-
-# Render
-df = pd.DataFrame(data)
-st.dataframe(df, use_container_width=True)
+st.markdown("""
+| **Short Name** | **Description**                           | **Formula** |
+|----------------|-------------------------------------------|-------------|
+| DPR            | Dividend Payout Ratio                     | \\( \\frac{\\text{Cash Dividends Paid}}{\\text{Net Income}} \\) |
+| ROE            | Return on Equity                          | \\( \\frac{\\text{Net Income}}{\\text{Stockholders' Equity}} \\) |
+| ROA            | Return on Assets                          | \\( \\frac{\\text{Net Income}}{\\text{Total Assets}} \\) |
+| GProf          | Gross Profit Margin                       | \\( \\frac{\\text{Gross Profit}}{\\text{Total Revenue}} \\) |
+| NPM            | Net Profit Margin                         | \\( \\frac{\\text{Net Income}}{\\text{Total Revenue}} \\) |
+| FCF/OCF        | Free Cash Flow to Operating Cash Flow     | \\( \\frac{\\text{Free Cash Flow}}{\\text{Operating Cash Flow}} \\) |
+| Cash/Debt      | Cash to Total Debt Ratio                  | \\( \\frac{\\text{Cash and Cash Equivalents}}{\\text{Total Debt}} \\) |
+| Cash/LT        | Cash to Long-Term Debt Ratio              | \\( \\frac{\\text{Cash and Cash Equivalents}}{\\text{Long-Term Debt}} \\) |
+| OCF/LTD        | Operating Cash Flow to Long-Term Debt     | \\( \\frac{\\text{Operating Cash Flow}}{\\text{Long-Term Debt}} \\) |
+| TD/IC          | Total Debt to Invested Capital Ratio      | \\( \\frac{\\text{Total Debt}}{\\text{Invested Capital}} \\) |
+| D/E            | Debt to Equity Ratio                      | \\( \\frac{\\text{Total Debt}}{\\text{Stockholders' Equity}} \\) |
+| Debt/EBITDA    | Debt to EBITDA Ratio                      | \\( \\frac{\\text{Total Debt}}{\\text{EBITDA}} \\) |
+| IntCov         | Interest Coverage Ratio                   | \\( \\frac{\\text{EBIT}}{\\text{Interest Expense}} \\) |
+| Current Ratio  | Current Ratio                             | \\( \\frac{\\text{Current Assets}}{\\text{Current Liabilities}} \\) |
+| Cash Ratio     | Cash Ratio                                | \\( \\frac{\\text{Cash and Cash Equivalents}}{\\text{Current Liabilities}} \\) |
+| Quick Ratio    | Quick Ratio                               | \\( \\frac{\\text{Current Assets} - \\text{Inventory}}{\\text{Current Liabilities}} \\) |
+| P/B            | Price to Book Ratio (inverse form)        | \\( \\frac{\\text{Stockholders' Equity}}{\\text{Total Assets}} \\) |
+""", unsafe_allow_html=True)
 
 # # Valuation
 # st.header("📊 Valuation / Market")
