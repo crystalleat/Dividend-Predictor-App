@@ -169,8 +169,9 @@ import pickle
 from catboost import CatBoostClassifier
 from xgboost import XGBClassifier
 from lightgbm import LGBMClassifier
+import openai
 
-st.title("📈 Predict Dividend Change using yFinance Data")
+st.title("\U0001F4C8 Predict Dividend Change using yFinance Data")
 
 ticker_input = st.text_input("Enter a Ticker Symbol (e.g., AAPL, MSFT, GE):", value="AAPL")
 industry = st.selectbox("Select Industry", ["Consumer", "Financials", "Energy", "Other"])
@@ -186,7 +187,7 @@ def safe_div(a, b):
     except:
         return 0
 
-if st.button("🔍 Fetch & Predict"):
+if st.button("\U0001F50D Fetch & Predict"):
     try:
         stock = yf.Ticker(ticker_input)
         # Retrieve quarterly statements
@@ -194,9 +195,9 @@ if st.button("🔍 Fetch & Predict"):
         balance_raw = stock.quarterly_balance_sheet
         cashflow_raw = stock.quarterly_cashflow
 
-        st.write("📟 Income Statement Shape:", income_raw.shape)
-        st.write("📟 Balance Sheet Shape:", balance_raw.shape)
-        st.write("📟 Cash Flow Shape:", cashflow_raw.shape)
+        st.write("\U0001F4BE Income Statement Shape:", income_raw.shape)
+        st.write("\U0001F4BE Balance Sheet Shape:", balance_raw.shape)
+        st.write("\U0001F4BE Cash Flow Shape:", cashflow_raw.shape)
 
         if income_raw.empty or balance_raw.empty or cashflow_raw.empty:
             st.error("❌ One or more financial statements are unavailable. Try a different ticker.")
@@ -232,7 +233,7 @@ if st.button("🔍 Fetch & Predict"):
         if input_df.isnull().values.any():
             st.warning("⚠️ Warning: NaN detected in input. Filling with 0.")
 
-        st.subheader("📋 Computed Financial Ratios")
+        st.subheader("\U0001F4CB Computed Financial Ratios")
         st.dataframe(input_df.T)
 
         # Model path logic
@@ -247,46 +248,35 @@ if st.button("🔍 Fetch & Predict"):
         with open(model_path, "rb") as f:
             model = pickle.load(f)
 
-        # Prediction and probabilities
         y_pred = model.predict(input_df)
         y_proba = model.predict_proba(input_df)[0]
 
-        label_map = {
-            -1: "📉 Decrease",
-            0: "➖ No Change",
-            1: "📈 Increase"
-        }
-
+        label_map = {-1: "📉 Decrease", 0: "➖ No Change", 1: "📈 Increase"}
         pred = int(y_pred.flatten()[0]) if hasattr(y_pred, 'flatten') else int(y_pred[0])
-        st.success(f"📊 Predicted Dividend Change: *{label_map[pred]}*")
 
-        # Save to session
         st.session_state.prediction_label = label_map[pred]
         st.session_state.input_df = input_df
         st.session_state.ticker = ticker_input
         st.session_state.industry = industry
 
+        st.success(f"📊 Predicted Dividend Change: *{label_map[pred]}*")
+
         # Show probabilities
         proba_map = {-1: y_proba[-1], 0: y_proba[0], 1: y_proba[1]}
-        proba_df = pd.DataFrame.from_dict(
-            {label_map[k]: [v] for k, v in proba_map.items()},
-            orient='columns'
-        )
+        proba_df = pd.DataFrame.from_dict({label_map[k]: [v] for k, v in proba_map.items()}, orient='columns')
         st.subheader("🔢 Prediction Probabilities")
         st.bar_chart(proba_df.T.rename(columns={0: "Probability"}))
 
-        # GPT Section
+        # GPT Analysis section
         st.markdown("---")
-        st.subheader("🧠 GPT-Powered Analysis")
+        st.subheader("\U0001F9E0 GPT-Powered Analysis")
         with st.form(key="gpt_form"):
-            api_key = st.text_input("🔐 Enter your OpenAI API Key", type="password")
+            api_key = st.text_input("\U0001F510 Enter your OpenAI API Key", type="password")
             submit_gpt = st.form_submit_button("Generate GPT Interpretation")
 
         if submit_gpt and api_key:
             try:
-                import openai
                 openai.api_key = api_key
-
                 label = st.session_state.prediction_label
                 ratios_dict = st.session_state.input_df.iloc[0].to_dict()
                 ticker = st.session_state.get("ticker", "N/A")
@@ -299,6 +289,7 @@ Here are the computed financial ratios:
 {ratios_text}
 Please provide a professional and insightful explanation of why this outcome is likely, referencing the most influential financial ratios.
 """
+
                 with st.spinner("💬 Generating GPT analysis..."):
                     response = openai.ChatCompletion.create(
                         model="gpt-3.5-turbo",
@@ -310,7 +301,7 @@ Please provide a professional and insightful explanation of why this outcome is 
                         max_tokens=500
                     )
                     output = response.choices[0].message["content"]
-                    st.markdown("### 📘 GPT Interpretation")
+                    st.markdown("### \U0001F4D8 GPT Interpretation")
                     st.write(output)
 
             except Exception as e:
