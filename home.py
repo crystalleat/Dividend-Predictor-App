@@ -7,24 +7,14 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("📊 Welcome to the Dividend Change Predictor App")
+st.title("📊 Dividend Change Predictor")
 
 st.markdown("""
-This app helps predict whether a company's dividend will:
 
-- 📈 Increase  
-- ➖ Stay the same  
-- 📉 Decrease  
+BA870 Financial Analytics - Final Project 
 
-It uses financial ratios from **yFinance** and industry-specific machine learning models.
-
----
-
-### 🔍 Explore via the sidebar:
-- 🧮 Make a prediction using real-time stock data
-- 🤖 View GPT-style natural language analysis
-- 📘 Learn the formulas and logic used
-- 🔢 See how the models were trained
-
-Built with ❤️ using Streamlit, Scikit-learn, LightGBM, and XGBoost.
+Team Members:
+- Akshara Ramprasad MSDS'25
+- Samritha Aadhi Ravikumar MSDS'25
+- Crystal Leatvanich MSBA'25
 """)
