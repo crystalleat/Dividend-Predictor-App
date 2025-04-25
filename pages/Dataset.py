@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 st.title("🏠 About our Dataset")
 
 st.markdown(" Access our Colab notebook here : https://colab.research.google.com/drive/1Ocjx5k9_szTnyFYZKBLshATQ1fFTpbeV?usp=sharing")
+st.markdown(" Access our github repo here : https://github.com/akshara2403/Dividend-Predictor-App")
 # --- Load training dataset ---
 try:
     df = pd.read_csv("data/dividends.csv")
