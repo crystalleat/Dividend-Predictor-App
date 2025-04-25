@@ -264,10 +264,6 @@ These indicators support maintaining, rather than increasing or decreasing, divi
                 )
             )
 
-        st.markdown("---")
-        st.subheader("🔬 Financial Ratios Used in Analysis")
-        st.dataframe(input_df.T)
-
     except Exception as e:
         st.error(f"❌ Error during prediction: {e}")
 
