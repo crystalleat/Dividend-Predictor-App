@@ -6,21 +6,33 @@ import streamlit as st
 #     page_icon="📈",
 #     layout="wide"
 # )
-import streamlit as st
 
 # Set page config
+# Set page configuration
 st.set_page_config(page_title="Home", layout="wide")
 
-# Inject CSS for background image
+# Inject custom CSS for dark background image
 st.markdown(
     """
     <style>
     .stApp {
-        background-image: url("https://images.unsplash.com/photo-1454165804606-c3d57bc86b40");
+        background-image: url('https://images.unsplash.com/photo-1508780709619-79562169bc64');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         background-attachment: fixed;
+    }
+
+    /* Optional: make main content darker for better readability */
+    .main {
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 2rem;
+        border-radius: 10px;
+    }
+
+    /* Optional: style titles */
+    h1 {
+        color: white;
     }
     </style>
     """,
