@@ -17,6 +17,7 @@ These ratios provide insights into a company's dividend reliability, profitabili
 st.title("📊 Financial Ratios Used in Prediction")
 
 # Data
+# Table Data
 data = {
     "Short Name": [
         "DPR", "ROE", "ROA", "GProf", "NPM", "FCF/OCF", "Cash/Debt", "Cash/LT", "OCF/LTD",
@@ -50,6 +51,7 @@ data = {
     ]
 }
 
+# Render
 df = pd.DataFrame(data)
 st.dataframe(df, use_container_width=True)
 
