@@ -15,11 +15,9 @@ st.markdown("""
 
 
 st.markdown("""
-<span style='font-size: 18px; font-weight: bold;'>
-Team Members:<br>
-- Akshara Ramprasad MSDS 2025<br>
-- Samritha Aadhi Ravikumar MSDS 2025<br>
-- Crystal Leatvanich MSBA 2025
-</span>
+Team Members:
+- <span style='font-size: 24px; font-weight: bold;'>BA870 Financial Analytics - Final Project</span>
+- <span style='font-size: 24px; font-weight: bold;'>BA870 Financial Analytics - Final Project</span>
+- <span style='font-size: 24px; font-weight: bold;'>BA870 Financial Analytics - Final Project</span>
 """, unsafe_allow_html=True)
 
