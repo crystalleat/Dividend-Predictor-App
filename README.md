@@ -55,43 +55,38 @@ The model uses 16+ key financial ratios across:
 ```bash
 git clone https://github.com/akshara2403/Dividend-Predictor-App.git
 cd Dividend-Predictor-App
+```
+
 2. Install Requirements
 Ensure Python 3.10 is installed, then:
 
-bash
-Copy
-Edit
+```bash 
 pip install -r requirements.txt
+```
 3. Run the App
-bash
-Copy
-Edit
+```bash
 streamlit run app.py
-Using GPT Analysis
-To enable GPT-powered interpretations:
+```
 
-Create an OpenAI account.
 
-Get your API key from: https://platform.openai.com/account/api-keys
-
-Enter the key inside the app when prompted.
 
 Folder Structure
-bash
-Copy
-Edit
+```bash
 .
 ├── app.py                    # Main entry point with multi-page navigation
 ├── pages/                   # All Streamlit subpages
 │   ├── about.py             # About project
 │   ├── code.py              # Model training code (tabbed)
-│   ├── gpt_analysis.py      # Optional GPT-only page
+│   ├── main.py              # Our dataset
+│   ├── Ratios_we_used.py    # Look into the ratios used for our dataset
 │   └── predict_from_yfinance.py
+
 ├── models/                  # Trained .pkl files per industry
 ├── images/                  # Confusion matrices and reports
 ├── data/                    # Optional CSVs or cache
 ├── requirements.txt
 └── README.md
+```
 Team Members
 Akshara Ramprasad – MSDS 2025
 
