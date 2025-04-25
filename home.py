@@ -13,6 +13,7 @@ st.markdown("""
 
 <span style='font-size: 24px; font-weight: bold;'>BA870 Financial Analytics - Final Project</span>
 
+<br>
 
 Team Members:
 - Akshara Ramprasad MSDS'25
