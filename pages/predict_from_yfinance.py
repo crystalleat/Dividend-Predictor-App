@@ -227,7 +227,7 @@ if st.button("🔍 Fetch & Predict"):
 
         # 🧠 Heuristic GPT-style interpretation
         st.markdown("---")
-        st.title("🧠 GPT-Style Analysis of Dividend Prediction")
+        st.title("GPT-Style Analysis of Dividend Prediction")
 
         label = label_map[pred]
         st.markdown(f"### Ticker: `{ticker_input}` | Industry: `{industry}`")
