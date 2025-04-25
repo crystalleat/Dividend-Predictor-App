@@ -1,4 +1,4 @@
-# Dividend Change Prediction App
+# Dividend Trend Prediction App
 
 This Streamlit web application predicts whether a public company's dividend payout is likely to **increase**, **decrease**, or **stay the same** based on financial ratio analysis. The model leverages historical financial data and live updates from `yfinance` to generate real-time predictions for multiple industries.
 
