@@ -197,9 +197,27 @@ if st.button("🔍 Fetch & Predict"):
         with open(model_path, "rb") as f:
             model = pickle.load(f)
 
+        # Prediction and probabilities
         y_pred = model.predict(input_df)
-        label_map = {-1: "📉 Decrease", 0: "➖ No Change", 1: "📈 Increase"}
+        y_proba = model.predict_proba(input_df)[0]
+
+        label_map = {
+             -1: "📉 Decrease",
+             0: "➖ No Change",
+             1: "📈 Increase"
+        }
+        # Display prediction
         pred = int(y_pred.flatten()[0]) if hasattr(y_pred, 'flatten') else int(y_pred[0])
+        st.success(f"📊 Predicted Dividend Change: *{label_map[pred]}*")
+
+        # Show probabilities as chart
+        proba_map = {-1: y_proba[-1], 0: y_proba[0], 1: y_proba[1]}
+        proba_df = pd.DataFrame.from_dict(
+            {label_map[k]: [v] for k, v in proba_map.items()},
+            orient='columns'
+        )
+        st.subheader("🔢 Prediction Probabilities")
+        st.bar_chart(proba_df.T.rename(columns={0: "Probability"}))
 
         st.session_state.prediction_label = label_map[pred]
         st.session_state.input_df = input_df
