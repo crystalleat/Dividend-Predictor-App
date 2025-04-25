@@ -13,8 +13,10 @@ st.markdown("""
 
 <span style='font-size: 24px; font-weight: bold;'>BA870 Financial Analytics - Final Project</span>
 
-Team Members:
-- Akshara Ramprasad MSDS'25
-- Samritha Aadhi Ravikumar MSDS'25
-- Crystal Leatvanich MSBA'25
+
+<br>
+**Team Members:**  
+**- Akshara Ramprasad MSDS'25**  
+**- Samritha Aadhi Ravikumar MSDS'25**  
+**- Crystal Leatvanich MSBA'25**
 """, unsafe_allow_html=True)
