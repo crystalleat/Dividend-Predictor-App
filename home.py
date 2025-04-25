@@ -1,13 +1,13 @@
 # File: home.py
 import streamlit as st
 
-st.set_page_config(
-    page_title="Dividend Change Predictor",
-    page_icon="📈",
-    layout="wide"
-)
+# st.set_page_config(
+#     page_title="Dividend Trend Predictor",
+#     page_icon="📈",
+#     layout="wide"
+# )
 
-st.title("📊 Dividend Change Predictor")
+st.title("📊 Dividend Trend Predictor")
 
 st.markdown("""
 
