@@ -11,10 +11,10 @@ The application is designed to assist financial analysts and investors in evalua
 
 ### Uses for a Dividend Prediction Model
 
-- **🔔 Alerting System**: Real-time alerts for dividend payment likelihood based on new financial data.  
-- **📊 Comparative Analysis**: Rank companies within the same industry based on dividend probability.  
-- **📈 Portfolio Construction**: Select high-probability dividend-paying stocks for income-focused portfolios.  
-- **🏥 Screening for Financial Health**: Use model insights to assess company financial stability.  
+- **Alerting System**: Real-time alerts for dividend payment likelihood based on new financial data.  
+- **Comparative Analysis**: Rank companies within the same industry based on dividend probability.  
+- **Portfolio Construction**: Select high-probability dividend-paying stocks for income-focused portfolios.  
+- **Screening for Financial Health**: Use model insights to assess company financial stability.  
 
 ---
 
