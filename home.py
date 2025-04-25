@@ -11,10 +11,10 @@ st.title("📊 Dividend Change Predictor")
 
 st.markdown("""
 
-<h2>BA870 Financial Analytics - Final Project</h2>
+<span style='font-size: 24px; font-weight: bold;'>BA870 Financial Analytics - Final Project</span>
 
 Team Members:
 - Akshara Ramprasad MSDS'25
 - Samritha Aadhi Ravikumar MSDS'25
 - Crystal Leatvanich MSBA'25
-""")
+""", unsafe_allow_html=True)
