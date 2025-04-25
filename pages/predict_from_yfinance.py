@@ -322,39 +322,57 @@ if st.button("🔍 Fetch & Predict"):
         st.subheader("🔢 Prediction Probabilities")
         st.bar_chart(proba_df.T.rename(columns={0: "Probability"}))
 
-        # 🔐 API Key Input
-        api_key = st.text_input("🔐 Enter your OpenAI API Key", type="password")
-        if api_key:
-            import openai
-            openai.api_key = api_key
-            # Prepare GPT prompt
-            label = label_map[pred]
-            ratios_text = "\n".join([f"{k}: {v}" for k, v in ratios.items()])
-            prompt = f"""
-            You are a financial analyst AI. A model predicted that the dividend for ticker {ticker_input} in the {industry} industry will {label.lower().replace('📈 ', 'increase').replace('📉 ', 'decrease').replace('➖ ', 'stay the same')}.
-            Here are the financial ratios:\n{ratios_text}
+        # --- Optional GPT Explanation (only if prediction exists) ---
+        if "prediction_label" in st.session_state and "input_df" in st.session_state:
         
-            Please provide a professional and insightful explanation of this prediction, referencing key financial ratios.
-            """
+            st.markdown("---")
+            st.subheader("🧠 GPT-Powered Analysis")
+            with st.form(key="gpt_form"):
+                api_key = st.text_input("🔐 Enter your OpenAI API Key", type="password")
+                submit_gpt = st.form_submit_button("Generate GPT Interpretation")
         
-            with st.spinner("💬 Generating GPT analysis..."):
+            if submit_gpt and api_key:
                 try:
-                    response = openai.ChatCompletion.create(
-                        model="gpt-3.5-turbo",
-                        messages=[
-                            {"role": "system", "content": "You are a financial analyst."},
-                            {"role": "user", "content": prompt}
-                        ],
-                        temperature=0.7,
-                        max_tokens=500
-                    )
-                    gpt_output = response.choices[0].message["content"]
-                    st.markdown("### 📘 GPT Interpretation")
-                    st.write(gpt_output)
+                    import openai
+                    openai.api_key = api_key
+        
+                    # Load required session state values
+                    label = st.session_state.prediction_label
+                    ratios_dict = st.session_state.input_df.iloc[0].to_dict()
+                    ticker = st.session_state.get("ticker", "N/A")
+                    industry = st.session_state.get("industry", "Unknown")
+        
+                    # Format ratios for GPT
+                    ratios_text = "\n".join([f"{k}: {round(v, 4)}" for k, v in ratios_dict.items()])
+        
+                    # Prompt for GPT
+                    prompt = f"""
+        You are a financial analyst AI. A machine learning model predicted that the dividend for ticker {ticker} in the {industry} industry will {label.lower().replace('📈 ', 'increase').replace('📉 ', 'decrease').replace('➖ ', 'stay the same')}.
+        Here are the computed financial ratios:
+        {ratios_text}
+        
+        Please provide a professional and insightful explanation of why this outcome is likely, referencing the most influential financial ratios.
+        """
+        
+                    with st.spinner("💬 Generating GPT analysis..."):
+                        response = openai.ChatCompletion.create(
+                            model="gpt-3.5-turbo",
+                            messages=[
+                                {"role": "system", "content": "You are a financial analyst."},
+                                {"role": "user", "content": prompt}
+                            ],
+                            temperature=0.7,
+                            max_tokens=500
+                        )
+                        output = response.choices[0].message["content"]
+                        st.markdown("### 📘 GPT Interpretation")
+                        st.write(output)
         
                 except Exception as e:
-                    st.error(f"⚠️ GPT API call failed: {e}")
-
+                    st.error(f"⚠️ GPT Error: {e}")
+        
+            elif submit_gpt and not api_key:
+                st.warning("⚠️ Please enter a valid OpenAI API Key.")
 
     except Exception as e:
         st.error(f"❌ Error during prediction: {e}")
