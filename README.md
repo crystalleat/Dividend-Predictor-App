@@ -104,6 +104,6 @@ Future Work
 
 License
 
-- MIT License. Feel free to use and modify with credit.
+- None. Feel free to use and modify with credit.
 
 Created as part of BA870 Financial Analytics @ Boston University
