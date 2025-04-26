@@ -77,6 +77,10 @@ page_bg_img = '''
     color: white;
     font-size: 24px;
 }
+.transparent-box h4 {
+    color: white;
+    font-size: 24px;
+}
 .transparent-box ul {
     list-style-type: none;
     padding-left: 1rem;
